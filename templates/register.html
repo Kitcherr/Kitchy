@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kitcher | Üye Ol</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <div class="form-side">
+      <h1>Ücretsiz Üye Ol</h1>
+      <p>Sitemizin ayrıcalıklarından yararlanmak için üye olun.</p>
+      <form method="POST">
+        <label>Kullanıcı Adı</label>
+        <input type="text" name="username" placeholder="Kullanıcı Adı..." required>
+        <label>Email</label>
+        <input type="email" name="email" placeholder="email adresiniz..." required>
+        <label>Şifre</label>
+        <input type="password" name="password" placeholder="şifre oluşturun..." required>
+        <button type="submit">Üye Ol</button>
+      </form>
+    </div>
+    <div class="image-side">
+      <img src="{{ url_for('static', filename='Kitcher_login.jpg') }}" alt="Yemek Görseli">
+    </div>
+  </div>
+</body>
+</html>
