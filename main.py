@@ -28,7 +28,7 @@ def register():
 
         return redirect(url_for('success'))
 
-    return render_template('register.html')
+    return render_template('index.html')
 
 @app.route('/success')
 def success():
