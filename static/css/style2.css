@@ -1,0 +1,531 @@
+body {
+    background-color: #FCF1E3;
+    padding: 0;
+    margin: 0;
+}
+
+/*yazı tipleri ------------------------------------------------------- */
+.poppins-light {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+/*--------------------------------------------------------------------- */
+
+
+header {
+    display: flex;
+    align-items: center;  
+    padding: 2.5% 5%;
+}
+
+
+header h1 {
+    color: #E8492A;
+    margin: 0;
+    cursor: default;
+    margin-right: 100px; 
+}
+
+
+/*menü ------------------------------------------------------- */
+nav {
+    display: flex;
+    gap: 35px; 
+}
+
+nav a {
+    position: relative; 
+    color: #E8492A;
+    text-decoration: none;
+    font-size: 120%;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px; 
+    width: 0;
+    height: 2px;
+    background-color: #E8492A;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+
+.login_button {
+    width: 170px;
+    height: 50px;
+    background-color: #015258;
+    border-radius: 50px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    transition: transform .2s;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.login_button h4 {
+    color: #FCF1E3;
+    margin: 0;
+    font-weight: 300;
+}
+
+.login_button:hover {
+    -ms-transform: scale(1.1); 
+    -webkit-transform: scale(1.1); 
+    transform: scale(1.1); 
+}
+
+@property --startColor {
+  syntax: "<color>";
+  initial-value: #015258;
+  inherits: false;
+}
+
+@property --endColor {
+    syntax: "<color>";
+    initial-value: #029faa;
+    inherits: false;
+}
+
+.ex1 {
+  background: linear-gradient(var(--startColor), var(--endColor));
+  animation: gradient 3s linear infinite;
+}
+
+@keyframes gradient {
+  0%,
+  100% {
+    --startColor: #015258;
+    --endColor: #029faa;
+  }
+  50% {
+    --startColor: #BC70A4;
+    --endColor: #BFD641;
+  }
+}
+
+/*--------------------------------------------------------------- */
+
+/* ana yazı -----------------------------------------------------*/
+
+main {
+    display: flex;
+    gap: 2%;
+    padding: 0%;
+    cursor: default;
+    padding-top: 1.5%;
+
+}
+
+.main-text {
+    color: #E8492A;
+    font-size: 550%;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    padding: 0%;
+    position: absolute;
+    opacity: 1;
+    margin-left: 5%;
+    z-index: 3;
+    cursor: default;
+}
+
+.main-card {
+    width: 375px;
+    height: 450px;
+    border-radius: 15px;
+    background-image: 
+        linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.842)), 
+        url(/img/burrito.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 1.5%;
+    transition: transform .2s;
+    transition: transform 0.5s ease-in-out, margin-top 0.5s ease-in-out; 
+   
+}
+
+.main-card h1 {
+    color: #FCF1E3;
+    font-size: 300%;
+    margin-top: 85%;
+    margin-left: 5%;
+}
+
+.main-card h2 {
+    color: #FCF1E3;
+    margin-left: 55%;
+    margin-top: -25%;
+    font-size: 200%;
+}
+
+.main-card-button {
+    width: 100px;
+    height: 35px;
+    background-color: #E8492A;
+    border-radius: 10px;
+    margin-left: 5%;
+    margin-top: -5%;
+    display: flex;                
+    align-items: center; 
+    justify-content: center;    
+    border: none;   
+    transition: transform .2s; 
+}
+
+.main-card-button h4 {
+    color: #FCF1E3;
+    font-size: 120%;
+}
+
+
+
+/*-----------------------------------------------------------------*/
+
+
+.left-pale-card {
+    position: relative;
+    width: 375px;
+    height: 450px;
+    border-radius: 15px;
+    background-image: 
+        linear-gradient(to left, rgba(0, 0, 0, 0), #fcf1e3), 
+        url(/img/makarna.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 1.5%;
+    margin-left: 35%;
+    opacity: 0.53;
+    z-index: 2;
+    transition: transform .2s;
+}
+
+.left-pale-card h1 {
+    color: #FCF1E3;
+    font-size: 300%;
+    margin-top: 85%;
+    margin-left: 5%;
+}
+
+.left-pale-card h2 {
+    color: #FCF1E3;
+    margin-left: 70%;
+    margin-top: -25%;
+    font-size: 200%;
+}
+
+.left-pale-card-button {
+    width: 100px;
+    height: 35px;
+    background-color: #e461469c;
+    border-radius: 10px;
+    margin-left: 5%;
+    margin-top: -5%;
+    display: flex;                
+    align-items: center; 
+    justify-content: center; 
+    border: none;       
+}
+
+.left-pale-card-button h4 {
+    color: #FCF1E3;
+    font-size: 120%;
+}
+
+/*--------------------------------------------------------------- */
+
+.right-pale-card {
+    position: relative;
+    width: 375px;
+    height: 450px;
+    border-radius: 15px;
+    background-image: 
+        linear-gradient(to right, rgba(0, 0, 0, 0), #fcf1e3), 
+        url(/img/tiramisu.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 1.5%;
+    opacity: 0.53;
+    z-index: 2;
+    transition: transform .2s;
+}
+
+.right-pale-card h1 {
+    color: #FCF1E3;
+    font-size: 300%;
+    margin-top: 85%;
+    margin-left: 5%;
+}
+
+.right-pale-card h2 {
+    color: #FCF1E3;
+    margin-left: 70%;
+    margin-top: -25%;
+    font-size: 200%;
+}
+
+.right-pale-card-button {
+    width: 100px;
+    height: 35px;
+    background-color: #E8492A;
+    border-radius: 10px;
+    margin-left: 5%;
+    margin-top: -5%;
+    display: flex;                
+    align-items: center; 
+    justify-content: center; 
+    border: none;       
+}
+
+.right-pale-card-button h4 {
+    color: #FCF1E3;
+    font-size: 120%;
+}
+
+.main-card,.main-card-button:hover {
+    -ms-transform: scale(1.1); 
+    -webkit-transform: scale(1.1); 
+    transform: scale(1.1); 
+}
+
+.main-card:hover {
+    margin-top: -2%;
+}
+
+/*-----------------------------------------------------*/
+
+.signup-button {
+    width: 160px;
+    height: 55px;
+    background-color: #E8492A;
+    border-radius: 50px;
+    border:none;
+    margin-left: 5%;
+    float: left;
+    margin-top: -7;
+    color: #FCF1E3;
+    display: flex;
+    align-items: center ;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.signup-button:hover svg {
+  transform: translateX(5px);
+}
+
+.signup-button:active {
+  transform: scale(0.95);
+}
+
+.signup-button:hover {
+  background: rgb(214, 62, 31);
+}
+
+.signup-button > svg {
+  width: 34px;
+  margin-left: 15px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/*başlangıç kartları------------------------------------------------------- */
+
+.cards {
+    display: flex;
+    gap: 6%;
+    cursor: default;
+    padding-top: 15%;
+}
+
+.card {
+    width: 300px;
+    height: 350px;
+    border-radius: 15px;
+    background-color: #E8492A;
+    background-image: url(/img/taco.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #FCF1E3;
+}
+
+.hover-cards {
+    color: #FCF1E3;
+    transition: transform 0.5s ease-in-out, margin-top 0.5s ease-in-out; 
+}
+
+.hover-cards:hover {
+    margin-top: -2%;
+}
+
+/*malzeme analiz----------------------------------------------------------*/
+
+.box-main {
+    display: flex;
+    gap: 6%;
+    cursor: default;
+    padding-top: 10%;
+    align-items: center;
+}
+
+.text-main {
+    cursor: default;
+    padding-top: 5%;
+}
+
+.big-text {
+    font-size: 650%;
+    color: #015258;
+    float: left;
+    margin-left: 2%;
+}
+
+.box {
+    width: 1950px;
+    height: 450px;
+    background-color: #FF9479;
+
+}
+
+.img-box {
+    width: 500px;
+    height: 300px;
+    background-color: #015258;
+    border-radius: 15px;
+    margin-left: 7%;
+    margin-top: -11%;
+    background-image: url(/img/malzeme.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+/*tarif yazma---------------------------------------------*/
+
+.recipe_card_main {
+    display: flex;
+    gap: 2%;
+    cursor: default;
+    padding-top: 10%;
+    align-items: center;
+}
+
+.recipe_card {
+    width: 600px;
+    height: 700px;
+    border-radius: 15px;
+    margin-left: 5%;
+    border: #E8492A solid 3px;
+}
+
+.recipe_card_tiny {
+    width: 170px;
+    height: 700px;
+    border-radius: 15px;
+    background-color: #E8492A;
+}
+
+.recipe_card_boxes1 {
+    width: 350px;
+    height: 300px;
+    border-radius: 15px;
+    background-color: #fae6cb;
+    margin-left: 5%;
+    padding-top: 2%;
+}
+
+.recipe_card_boxes2 {
+    width: 539px;
+    height: 200px;
+    border-radius: 15px;
+    background-color: #fae6cb;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+.recipe_card_boxes3 {
+    width: 170px;
+    height: 140px;
+    border-radius: 15px;
+    background-color: #FF9479;
+    margin-right: 5%;
+    margin-top: -50%;
+    float: right;
+}
+
+li {
+    color: #E8492A;
+    margin-left: 10%;
+    font-size: 150%;
+}
+
+.recipe_card_tiny_circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #FCF1E3;
+
+}
+
+/*footer--------------------------------------------------*/
+
+footer {
+    display: flex;
+    cursor: default;
+    padding-top: 10%;
+}
+
+.footer-box {
+    width: 2050px;
+    height: 520px;
+    background-color: #015258;
+    display: flex;
+    align-items: center;
+    gap: 0.5%;
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+.red-footer-box {
+    width: 1905px;
+    height: 40px;
+    background-color: #E8492A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5%;
+}
+
+.footer-menu {
+    display: block;
+    margin-left: 20%;
+    font-size: 70%;
+}
+
+.line {
+    width: 1px;
+    height: 190px;
+    background-color: #FCF1E3;
+    margin-left: 8%;
+}
