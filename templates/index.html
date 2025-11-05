@@ -76,7 +76,7 @@
 
 <div class="cards">
     <div class="card hover-cards" style="margin-left: -3%; "></div>
-    <div class="card hover-cards" style="background-image: url(/img/steak.jpg);"></div>
+    <img src="{{ url_for('static', filename='img/steak.jpg') }}" alt="Yemek Görseli">
     <div class="card " style="background-image: none;">
         <h2 class="poppins-bold" style="margin-left: 7%; font-size: 170%;">Sayısız Yemek</h2>
         <h3 class="poppins-light" style="margin-left: 7%;">Bütün mutfaklardan <br>lezzetler, en güzel <br> tarifleriyle burada.</h3>
@@ -125,44 +125,45 @@
     </div>
 </div>
 
+
 <footer>
-    <div class="footer-box">
-        <h1 class="poppins-bold" style="float:center; color: #FCF1E3; font-size: 250%; margin-top: -15%;">kitcher</h1>
-        <h2 class="poppins-light" style="margin-left:-9%; color: #FCF1E3; margin-top: -5%; font-size: 130%;">Bu site geliştirilme aşamasındadır. <br> Fikirlerininiz bizim için önemli!</h2>
-        <i class="fa-brands fa-instagram"></i>
-        <i class="fa-brands fa-x-twitter"></i>
-        <i class="fa-brands fa-discord"></i>
-
-        <div class="footer-menu" style="margin-left: 40%;">
-            <h2 class="poppins-bold" style="color: #FCF1E3; margin-top: 0%;">Kategoriler</h2>
-            <h2 class="poppins-light" style="color: #FCF1E3; margin-top: 30%;">Kahvaltı</h2>
-            <h2 class="poppins-light" style="color: #FCF1E3;">Akşam Yemeği</h2>
-            <h2 class="poppins-light" style="color: #FCF1E3;">Atıştırmalık</h2>
-            <h2 class="poppins-light" style="color: #FCF1E3;">Salata</h2>
-            <h2 class="poppins-light" style="color: #FCF1E3;">İçecekler</h2>
-            <h2 class="poppins-light" style="color: #FCF1E3;">Tatlılar</h2>
-        </div>
-
-        <div class="footer-menu" style="margin-left: 8%;">
-            <h2 class="poppins-bold" style="color: #FCF1E3; margin-top: -45%;">Hakkımızda</h2>
-            <h2 class="poppins-light" style="color: #FCF1E3; margin-top: 30%;">Yardım</h2>
-            <h2 class="poppins-light" style="color: #FCF1E3;">Biz Kimiz?</h2>
-            <h2 class="poppins-light" style="color: #FCF1E3;">Hakkında</h2>
-            <h2 class="poppins-light" style="color: #FCF1E3;">SSS</h2>
-            <h2 class="poppins-light" style="color: #FCF1E3;">İletişim</h2>
-        </div>
-
-        <div class="footer-menu" style="margin-left: 8%;">
-            <h2 class="poppins-bold" style="color: #FCF1E3; margin-top: -77%;">Araçlar</h2>
-            <h2 class="poppins-light" style="color: #FCF1E3; margin-top: 20%;">Malzeme Analiz</h2>
-            <h2 class="poppins-light" style="color: #FCF1E3;">Geribildirim Oluştur</h2>
-            <h2 class="poppins-light" style="color: #FCF1E3;">Tarif Oluştur</h2>
-        </div>
-
-
-
+  <div class="footer-box">
+    <div>
+      <h1 class="poppins-bold" style="color: #FCF1E3;">kitcher</h1>
+      <h2 class="poppins-light">Bu site geliştirilme aşamasındadır.<br>Fikirleriniz bizim için önemli!</h2>
+      <a href="https://www.instagram.com/the_kitcher/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://twitter.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://discord.gg/" target="_blank"><i class="fab fa-discord"></i></a>
     </div>
+
+    <div class="footer-menu">
+      <h2 class="poppins-bold">Kategoriler</h2>
+      <h2 class="poppins-light">Kahvaltı</h2>
+      <h2 class="poppins-light">Akşam Yemeği</h2>
+      <h2 class="poppins-light">Tatlılar</h2>
+      <h2 class="poppins-light">İçecekler</h2>
+    </div>
+
+    <div class="footer-menu">
+      <h2 class="poppins-bold">Hakkımızda</h2>
+      <h2 class="poppins-light">Biz Kimiz?</h2>
+      <h2 class="poppins-light">İletişim</h2>
+      <h2 class="poppins-light">Yardım</h2>
+    </div>
+
+    <div class="footer-menu">
+      <h2 class="poppins-bold">Araçlar</h2>
+      <h2 class="poppins-light">Malzeme Analiz</h2>
+      <h2 class="poppins-light">Geribildirim</h2>
+      <h2 class="poppins-light">Tarif Oluştur</h2>
+        <h1 class="poppins-light">© 2025 kitcher</h1>
+    </div>
+  </div>
 </footer>
+<div class="red-footer-box">
+  
+</div>
+
 
 <div class="red-footer-box">
     <h1 class="poppins-light" style=" color: #FCF1E3; font-size: 130%;">2025</h1>
