@@ -23,7 +23,8 @@ Modern ve görsel ağırlıklı arayüzümüz ile tariflere göz atmayı ve uygu
 ---
 
 ## 🚧 Proje Durumu: Geliştirme Aşamasında
---![image alt](https://github.com/S0Lt4/ProjeKayit/blob/b3698ed5aceb9f07ee830f7421c507d7157f3448/Screenshot%202025-09-17%20231849.png)
+
+![Kitcher Alt Bölümler](https://github.com/S0Lt4/ProjeKayit/blob/7768765a21fd5fe68089f1e2d00c65bb15c393cd/Kitcher_homepage.jpg)
 
 Kitcher şu anda **aktif geliştirme aşamasındadır** ve henüz genel kullanıma açılmamıştır.
 
