@@ -1,175 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kitcher</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="/img/k.png">
-    <script src="https://kit.fontawesome.com/bb22271329.js" crossorigin="anonymous"></script>
+    <title>Kitcher - Anasayfa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<header>
-    <h1 class="poppins-bold">kitcher</h1>
-    <nav>
-        <a class="poppins-light">anasayfa</a>
-        <a class="poppins-light">profil</a>
-        <a class="poppins-light">hakkımızda</a>
-    </nav>
-    <div class="login_button ex1">
-        <h4 class="poppins-light">giriş yap ></h4>
-    </div>
-</header>
-
-<h1 class="main-text">Aradığın en güzel <br> ve en sıradışı <br>tarifler burada!</h1>
-
-<main>
-
-    <div class="left-pale-card" >
-        <h1 class="poppins-bold">Makarna</h1>
-        <h2 class="poppins-light">4,1</h2>
-        <button class="left-pale-card-button">
-            <h4 class="poppins-light">tarif ></h4>
-        </button>
-    </div>
     
-    <div class="main-card">
-        <h1 class="poppins-bold">Burrito</h1>
-        <h2 class="poppins-light">4,3</h2>
-        <button class="main-card-button">
-            <h4 class="poppins-light">tarif ></h4>
-        </button>
-    </div>
+    <header class="main-header">
+        <div class="logo">kitcher</div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="{{ url_for('index') }}" class="active">ana sayfa</a></li> 
+                <li><a href="#">profil</a></li>
+                <li><a href="#">hakkımızda</a></li>
+            </ul>
+        </nav>
+        <a href="{{ url_for('register') }}" class="login-btn">giriş yap ></a> 
+    </header>
 
-    <div class="right-pale-card">
-        <h1 class="poppins-bold">Tiramisu</h1>
-        <h2 class="poppins-light">3,8</h2>
-        <button class="right-pale-card-button">
-            <h4 class="poppins-light">tarif ></h4>
-        </button>
-    </div>
+    <main class="hero-section">
+        <div class="hero-content">
+            <div class="content-left">
+                <span class="logo-small">kitcher</span>
+                <h1>Aradığın en güzel ve en sıradışı tarifler burada!</h1>
+                <a href="{{ url_for('register') }}" class="signup-btn">
+                    <span>> ücretsiz üye ol</span>
+                    <small>Sitemizden yararlan!</small>
+                </a>
+            </div>
+            
+            <div class="content-right">
+                
+                <img src="{{ url_for('static', filename='img/1.jpg') }}" alt="Yemek masası arka planı" class="bg-img">
+                
+                <div class="recipe-card">
+                    <img src="{{ url_for('static', filename='img/turkeyimg.jpeg') }}" alt="Fırında hindi görseli">
+                    <div class="card-info">
+                        <h2>Fırında hindi <span class="rating">4,7★</span></h2>
+                        <a href="#" class="recipe-link">> Tarif</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="featured-section">
+        <div class="card-grid">
+            
+            <div class="featured-card image-card">
+                <img src="{{ url_for('static', filename='img/sushi.jpg') }}" alt="Sushi tabağı">
+            </div>
+
+            <div class="featured-card image-card">
+                <img src="{{ url_for('static', filename='img/taco.jpeg') }}" alt="Greyfurt ve salata">
+            </div>
+
+            <div class="featured-card text-card bg-red">
+                <h2>Sayısız yemek</h2>
+                <p>Bütün mutfaklardan lezzetler, en güzel tarifleriyle burada.</p>
+            </div>
+
+            <div class="featured-card image-card">
+                <img src="{{ url_for('static', filename='img/steak.jpg') }}" alt="Izgara Biftek">
+            </div>
+            
+        </div>
+    </section>
     
-</main>
+    <section class="title-section">
+        <h1>tarif defteri tarif defteri tarif defteri</h1>
+    </section>
 
-<button class="signup-button poppins-light">
-    <h2 class="poppins-light">üye ol</h2>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 74 74"
-    height="34"
-    width="34"
-    >
-    <circle stroke-width="3" stroke="white" r="35.5" cy="37" cx="37"></circle>
-    <path
-      fill="white"
-      d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"
-    ></path>
-  </svg>
-</button>
-
-
-
-<div class="cards">
-    <div class="card hover-cards" style="margin-left: -3%; "></div>
-    <img src="{{ url_for('static', filename='img/steak.jpg') }}" alt="Yemek Görseli">
-    <div class="card " style="background-image: none;">
-        <h2 class="poppins-bold" style="margin-left: 7%; font-size: 170%;">Sayısız Yemek</h2>
-        <h3 class="poppins-light" style="margin-left: 7%;">Bütün mutfaklardan <br>lezzetler, en güzel <br> tarifleriyle burada.</h3>
-    </div>
-    <img src="{{ url_for('static', filename='img/sushi.jpg') }}" alt="Yemek Görseli">
-</div>
-
-<div class="box-main">
-    <div class="box">
-        <h1 class="poppins-bold" style="font-size: 300%; margin-left: 40%; margin-top: 5%; color: #FCF1E3;">Malzeme Analiz</h1>
-        <h2 class="poppins-light" style="color: #FCF1E3; text-align: left; margin-left: 40%;">Elindeki malzemeleri gir, yapabileceklerini <br> gör ve voila!</h2>
-        <div class="img-box"></div>
-        <div class="login_button " style="margin-right: 51%; margin-top: -4%; background-color: #E8492A;">
-            <h4 class="poppins-light">hemen dene ></h4>
+    <section class="analysis-section">
+        <div class="analysis-widget">
+            <div class="dots-row">
+                <div class="dot red"></div>
+                <div class="dot orange"></div>
+                <div class="dot pink"></div>
+                <div class="dot green"></div>
+                <div class="dot blue"></div>
+                <div class="dot red"></div>
+                <div class="dot orange"></div>
+                <div class="dot pink"></div>
+                <div class="dot green"></div>
+                <div class="dot blue"></div>
+            </div>
+            <div class="widget-content">
+                <div class="content-left">
+                    <img src="{{ url_for('static', filename='img/malzeme.jpeg') }}" alt="Malzemeler">
+                </div>
+                <div class="content-right">
+                    <h2>Malzeme Analiz</h2>
+                    <p>Elinizdeki malzemeleri girin, yapabileceklerinizi görün ve yolla!</p>
+                    <a href="#" class="action-btn">› Hemen dene</a>
+                </div>
+            </div>
         </div>
+    </section>
 
-    </div>
-</div>
+    <footer class="main-footer">
+        <p>2025 kitcher</p>
+        <p>Bu site beta aşamasındadır. Önerilere açığız!</p>
+    </footer>
 
-
-<div class="recipe_card_main">
-    <div class="recipe_card">
-        <h2 class="poppins-bold" style="color: #E8492A; font-size: 250%; text-align: center; text-decoration: underline;"><i>Tarif adı...</i></h2>
-        <div class="recipe_card_boxes1">
-            <li class="poppins-light" style="margin-top: 5%; color: #E8492A;"><i>malzeme ekle...</i></li>
-            <li class="poppins-light"></li>
-            <li class="poppins-light"></li>
-            <li class="poppins-light"></li>
-            <li class="poppins-light"></li>
-        </div>
-        <div class="recipe_card_boxes3">
-            <h2 class="poppins-light" style="color: #FCF1E3; text-align: center;"><i>süre</i></h2>
-            <h2 class="poppins-light" style="color: #FCF1E3; text-align: center;">...</h2>
-        </div>
-        <div class="recipe_card_boxes2">
-            <h2 class="poppins-light" style="color: #E8492A; margin-left: 3%; padding-top: 2%;"><i>Yapılışı yazın...</i></h2>
-        </div>
-    </div>
-
-    <div class="recipe_card_tiny">
-        <h2 class="poppins-light" style="color: #FCF1E3; rotate: -90deg; ">ıslak kek</h2>
-        <div class="recipe_card_tiny_circle"></div>
-    </div>
-    <div class="recipe_card_tiny">
-        <div class="recipe_card_tiny_circle"></div>
-    </div>
-</div>
-
-
-<footer>
-  <div class="footer-box">
-    <div>
-      <h1 class="poppins-bold" style="color: #FCF1E3;">kitcher</h1>
-      <h2 class="poppins-light">Bu site geliştirilme aşamasındadır.<br>Fikirleriniz bizim için önemli!</h2>
-      <a href="https://www.instagram.com/the_kitcher/" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://twitter.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
-      <a href="https://discord.gg/" target="_blank"><i class="fab fa-discord"></i></a>
-    </div>
-
-    <div class="footer-menu">
-      <h2 class="poppins-bold">Kategoriler</h2>
-      <h2 class="poppins-light">Kahvaltı</h2>
-      <h2 class="poppins-light">Akşam Yemeği</h2>
-      <h2 class="poppins-light">Tatlılar</h2>
-      <h2 class="poppins-light">İçecekler</h2>
-    </div>
-
-    <div class="footer-menu">
-      <h2 class="poppins-bold">Hakkımızda</h2>
-      <h2 class="poppins-light">Biz Kimiz?</h2>
-      <h2 class="poppins-light">İletişim</h2>
-      <h2 class="poppins-light">Yardım</h2>
-    </div>
-
-    <div class="footer-menu">
-      <h2 class="poppins-bold">Araçlar</h2>
-      <h2 class="poppins-light">Malzeme Analiz</h2>
-      <h2 class="poppins-light">Geribildirim</h2>
-      <h2 class="poppins-light">Tarif Oluştur</h2>
-        <h1 class="poppins-light">© 2025 kitcher</h1>
-    </div>
-  </div>
-</footer>
-<div class="red-footer-box">
-  
-</div>
-
-
-<div class="red-footer-box">
-    <h1 class="poppins-light" style=" color: #FCF1E3; font-size: 130%;">2025</h1>
-    <h1 class="poppins-bold" style="float:center; color: #FCF1E3; font-size: 130%;">kitcher</h1>
-</div>
-    
-    
 </body>
 </html>
+    </main>
+

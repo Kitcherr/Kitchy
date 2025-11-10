@@ -14,25 +14,32 @@ class User(db.Model):
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
 
-# Ana sayfa - kayıt formu
-@app.route('/', methods=['GET', 'POST'])
+# 🏡 Ana Rota: index.html dosyasını render eder.
+@app.route('/')
+def index():
+    # templates/index.html dosyasını çalıştırır
+    return render_template('index.html')
+
+
+# 👤 Kayıt Rota'sı: register.html formunu gösterir ve POST ile kayıt yapar.
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
 
+        # Yeni kullanıcı kaydı...
         new_user = User(username=username, email=email, password=password)
         db.session.add(new_user)
         db.session.commit()
 
-        return redirect(url_for('success'))
+        # Kayıt sonrası ana sayfaya (index rotasına) yönlendir
+        return redirect(url_for('index'))
 
-    return render_template('index.html')
+    # Kayıt formunu açar (Sizin bu projede register.html'iniz olmalı)
+    return render_template('register.html')
 
-@app.route('/success')
-def success():
-    return "Kayıt başarılı! 🎉"
 
 if __name__ == '__main__':
     with app.app_context():
