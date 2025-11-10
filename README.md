@@ -23,7 +23,7 @@ Modern ve görsel ağırlıklı arayüzümüz ile tariflere göz atmayı ve uygu
 ---
 
 ## 🚧 Proje Durumu: Geliştirme Aşamasında
-![Kitcher Anasayfa Hero Bölümü]("C:\Users\Soltan\OneDrive\İş masası\Kitcher_homepage.jpg")
+![Kitcher Anasayfa Hero Bölümü]()
 
 Kitcher şu anda **aktif geliştirme aşamasındadır** ve henüz genel kullanıma açılmamıştır.
 
