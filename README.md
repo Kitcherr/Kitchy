@@ -1,28 +1,30 @@
-# Kitchy
-# 🔪 Kitcher - En Sıradışı Tariflerin Başlangıç Noktası
+# 🔪 Kitcher - En Sıradışı Tariflerin Projesi
 
-Kitcher, mutfak rutininizi kırmak ve yaratıcılığınızı ateşlemek için tasarlanmış yeni nesil bir yemek platformu projesidir. Amacımız, yemek yapma sürecini sadece bir görevden çıkarıp, keyifli ve keşif dolu bir maceraya dönüştürmektir.
+Kitcher, mutfak rutinini kırmayı ve yaratıcılığı teşvik etmeyi amaçlayan yeni nesil bir yemek platformu **geliştirme projesidir**. Amacımız, yemek yapma sürecini sadece bir görevden çıkarıp, keyifli bir maceraya dönüştürecek bir platform inşa etmektir.
 
 ---
 
-## ✨ Kitcher'ın Öne Çıkan Değerleri
+## ✨ Kitcher'ın Hedeflenen Özellikleri
 
-Kullanıcı deneyimini maksimize eden ve mutfakta geçirilen zamanı verimli kılan temel özelliklerimiz:
+Geliştirme aşaması tamamlandığında, Kitcher kullanıcılarına aşağıdaki temel değerleri sunmayı hedeflemektedir:
 
 ### 🌟 İlham Veren Tarif Koleksiyonu
-Sadece popüler değil; dünyadan ve yerel mutfaklardan özenle seçilmiş, en **sıradışı**, en **estetik** ve en **lezzetli** tarifleri bir araya getiriyoruz. Kataloğumuz, sürekli güncellenerek mutfak ufkunuzu genişletmeyi hedefler.
+Sadece popüler değil; dünyadan ve yerel mutfaklardan özenle seçilmiş, en **sıradışı**, en **estetik** ve en **lezzetli** tarifleri bir araya getirmek.
 
 ### 💡 Akıllı Malzeme Analiz Motoru
-"Malzeme Analiz" özelliğimiz ile elinizdeki malzemeleri sisteme girmeniz yeterli. Yapay zeka destekli motorumuz, o anki koşullarınıza en uygun, yaratıcı tarif önerilerini anında listeler. Bu sayede israfı azaltır, daima ne pişireceğinizi bilirsiniz.
+Kullanıcının elindeki malzemeleri girerek, yapay zeka destekli motorumuz ile o anki koşullara en uygun, yaratıcı tarif önerilerini anında listelemek. Bu sayede israfı azaltmak ve verimliliği artırmak hedeflenir.
 
 ### 📚 Kişisel Tarif Defteri ve Profil Yönetimi
-Ücretsiz üyelik ile kişisel profil oluşturma imkanı sunuyoruz. Beğendiğiniz tarifleri favorilerinize ekleyerek kendi dijital tarif defterinizi oluşturabilir ve mutfak deneyiminizi tamamen kişiselleştirebilirsiniz.
+Kişisel profil oluşturma ve favori tarifleri kaydederek kendi dijital defterini oluşturma imkanı sunmak.
 
 ### 🎨 Görsel Odaklı ve Kullanıcı Dostu Tasarım
-Göz yormayan, modern ve görsel ağırlıklı arayüzümüz, hem telefondan hem de masaüstünden tariflere göz atmayı ve uygulamayı son derece keyifli hale getirir.
+Modern ve görsel ağırlıklı arayüzümüz ile tariflere göz atmayı ve uygulamayı son derece keyifli hale getirmek.
 
 ---
 
-## 📢 Not: Beta Sürecindeyiz!
+## 🚧 Proje Durumu: Geliştirme Aşamasında
+![Kitcher Anasayfa Hero Bölümü]("C:\Users\Soltan\OneDrive\İş masası\Kitcher_homepage.jpg")
 
-Kitcher şu anda **erken erişim (beta) aşamasındadır**. Sürekli olarak yeni özellikler ekliyor ve performansı iyileştiriyoruz. Projemize katkıda bulunmak isterseniz, lütfen fikirlerinizi ve önerilerinizi bizimle paylaşmaktan çekinmeyin!
+Kitcher şu anda **aktif geliştirme aşamasındadır** ve henüz genel kullanıma açılmamıştır.
+
+Bu proje, bir konseptin hayata geçirilmesi sürecini temsil etmektedir. Projenin ilerlemesiyle ilgili fikirlerinizi ve önerilerinizi bizimle paylaşmaktan çekinmeyin!
