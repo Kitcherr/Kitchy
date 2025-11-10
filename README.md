@@ -23,7 +23,7 @@ Modern ve görsel ağırlıklı arayüzümüz ile tariflere göz atmayı ve uygu
 ---
 
 ## 🚧 Proje Durumu: Geliştirme Aşamasında
-![Kitcher Anasayfa Hero Bölümü]()
+--![image alt](https://github.com/S0Lt4/ProjeKayit/blob/b3698ed5aceb9f07ee830f7421c507d7157f3448/Screenshot%202025-09-17%20231849.png)
 
 Kitcher şu anda **aktif geliştirme aşamasındadır** ve henüz genel kullanıma açılmamıştır.
 
