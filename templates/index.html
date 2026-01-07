@@ -3,108 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kitcher - Anasayfa</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}"> 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>kitcher</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/k.png') }}">
 </head>
 <body>
-    
-    <header class="main-header">
-        <div class="logo">kitcher</div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="{{ url_for('index') }}" class="active">ana sayfa</a></li> 
-                <li><a href="#">profil</a></li>
-                <li><a href="#">hakkımızda</a></li>
-            </ul>
+
+    <header>
+        <div class="logo poppins-bold" style="color: #e74c3c;">kitcher</div>
+        <nav>
+            <a href="{{ url_for('index') }}" class="poppins-light">anasayfa</a>
+            <a href="#" class="poppins-light">tarifler</a>
+            <a href="#" class="poppins-light">hakkımızda</a>
         </nav>
-        <a href="{{ url_for('register') }}" class="login-btn">giriş yap ></a> 
+        
+        <div class="login-btn-wrapper">
+            {% if session['username'] %}
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span class="poppins-light" style="color: #1f3173;">Selam, <strong>{{ session['username'] }}</strong></span>
+                    <button onclick="location.href='/profile'" class="login-button poppins-light" style="background-color: #0b4d4a;">Profilim</button>
+                    <a href="{{ url_for('logout') }}" style="color: #e74c3c; text-decoration: none; font-size: 0.8rem;">çıkış yap</a>
+                </div>
+            {% else %}
+                <button onclick="location.href='/login'" class="login-button poppins-light">giriş yap ></button>
+            {% endif %}
+            </div>
     </header>
 
     <main class="hero-section">
-        <div class="hero-content">
-            <div class="content-left">
-                <span class="logo-small">kitcher</span>
-                <h1>Aradığın en güzel ve en sıradışı tarifler burada!</h1>
-                <a href="{{ url_for('register') }}" class="signup-btn">
-                    <span>> ücretsiz üye ol</span>
-                    <small>Sitemizden yararlan!</small>
-                </a>
+        <h1 class="main-text poppins-bold">
+            Aradığın en <span class="handwrite">"sıradışı"</span> <br> tarifler burada!
+        </h1>
+
+        <div class="cta-container">
+            <div class="search-bar">
+                <input type="text" placeholder="Tarif Ara..." class="poppins-light">
+                <span class="search-icon">🔍</span>
             </div>
             
-            <div class="content-right">
-                
-                <img src="{{ url_for('static', filename='img/1.jpg') }}" alt="Yemek masası arka planı" class="bg-img">
-                
-                <div class="recipe-card">
-                    <img src="{{ url_for('static', filename='img/turkeyimg.jpeg') }}" alt="Fırında hindi görseli">
-                    <div class="card-info">
-                        <h2>Fırında hindi <span class="rating">4,7★</span></h2>
-                        <a href="#" class="recipe-link">> Tarif</a>
-                    </div>
+            {% if not session['username'] %}
+            <button onclick="location.href='/register'" class="signup-btn-main poppins-light">
+                üye ol <span class="arrow-circle">→</span>
+            </button>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer class="footer-dark">
+        <div class="footer-content">
+            <div class="footer-logo-section">
+                <h1 class="poppins-bold">kitcher</h1>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4 class="poppins-bold">Kategoriler</h4>
+                    <p class="poppins-light">Kahvaltı</p>
+                    <p class="poppins-light">Akşam Yemeği</p>
+                </div>
+                <div class="link-group">
+                    <h4 class="poppins-bold">Hakkımızda</h4>
+                    <p class="poppins-light">Yardım</p>
+                    <p class="poppins-light">Biz Kimiz?</p>
+                </div>
+                <div class="link-group">
+                    <h4 class="poppins-bold">Araçlar</h4>
+                    <p class="poppins-light">Malzeme Analiz</p>
+                    <p class="poppins-light">Geribildirim Oluştur</p>
                 </div>
             </div>
         </div>
-        <section class="featured-section">
-        <div class="card-grid">
-            
-            <div class="featured-card image-card">
-                <img src="{{ url_for('static', filename='img/sushi.jpg') }}" alt="Sushi tabağı">
-            </div>
-
-            <div class="featured-card image-card">
-                <img src="{{ url_for('static', filename='img/taco.jpeg') }}" alt="Greyfurt ve salata">
-            </div>
-
-            <div class="featured-card text-card bg-red">
-                <h2>Sayısız yemek</h2>
-                <p>Bütün mutfaklardan lezzetler, en güzel tarifleriyle burada.</p>
-            </div>
-
-            <div class="featured-card image-card">
-                <img src="{{ url_for('static', filename='img/steak.jpg') }}" alt="Izgara Biftek">
-            </div>
-            
-        </div>
-    </section>
-    
-    <section class="title-section">
-        <h1>tarif defteri tarif defteri tarif defteri</h1>
-    </section>
-
-    <section class="analysis-section">
-        <div class="analysis-widget">
-            <div class="dots-row">
-                <div class="dot red"></div>
-                <div class="dot orange"></div>
-                <div class="dot pink"></div>
-                <div class="dot green"></div>
-                <div class="dot blue"></div>
-                <div class="dot red"></div>
-                <div class="dot orange"></div>
-                <div class="dot pink"></div>
-                <div class="dot green"></div>
-                <div class="dot blue"></div>
-            </div>
-            <div class="widget-content">
-                <div class="content-left">
-                    <img src="{{ url_for('static', filename='img/malzeme.jpeg') }}" alt="Malzemeler">
-                </div>
-                <div class="content-right">
-                    <h2>Malzeme Analiz</h2>
-                    <p>Elinizdeki malzemeleri girin, yapabileceklerinizi görün ve yolla!</p>
-                    <a href="#" class="action-btn">› Hemen dene</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="main-footer">
-        <p>2025 kitcher</p>
-        <p>Bu site beta aşamasındadır. Önerilere açığız!</p>
     </footer>
 
 </body>
 </html>
-    </main>
-

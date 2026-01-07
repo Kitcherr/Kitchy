@@ -1,108 +1,189 @@
+/* Genel Ayarlar */
 body {
+    background-color: #FCF1E3;
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #e24a2b; /* turuncu arka plan */
-    height: 100vh;
-    overflow: hidden;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    color: #1f3173;
+    overflow-x: hidden;
 }
 
-.register-container {
+/* Typography */
+.poppins-light { font-weight: 300; }
+.poppins-bold { font-weight: 700; }
+.handwrite { font-family: "Shadows Into Light", cursive; }
+
+/* --- HEADER --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+}
+
+.logo {
+    font-size: 2rem;
+    color: #E8492A;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #E8492A;
+    font-size: 1.1rem;
+    position: relative;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #E8492A;
+    transition: 0.3s;
+}
+
+nav a:hover::after { width: 100%; }
+
+/* Giriş Butonu (Animasyonlu) */
+.login-button {
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background: linear-gradient(45deg, #1f3173, #029faa);
+    transition: transform 0.3s;
+}
+
+.login-button:hover { transform: scale(1.05); }
+
+/* --- HERO SECTION --- */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 20px;
+    min-height: 40vh;
+}
+
+.main-text {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.1;
+    margin-bottom: 40px;
+}
+
+/* Arama ve Üye Ol (Yan yana dizilim) */
+.cta-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.search-bar {
+    background-color: #E8492A;
+    border-radius: 35px;
+    display: flex;
+    align-items: center;
+    padding: 5px 20px;
+    width: 350px;
+    height: 60px;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.search-bar input::placeholder { color: #fcf1e3cc; }
+
+.signup-btn-main {
+    background-color: #E8492A;
+    color: white;
+    border: none;
+    padding: 0 35px;
+    border-radius: 35px;
+    height: 60px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.signup-btn-main:hover { background-color: #d43f22; }
+
+/* --- FOOTER (Görseldeki koyu mavi alan) --- */
+.footer-dark {
+    background-color: #1f3173;
+    color: #FCF1E3;
+    padding: 80px 10% 40px 10%;
+    margin-top: 100px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.footer-logo-section h1 { font-size: 3rem; margin: 0; }
+
+.footer-links {
+    display: flex;
+    gap: 80px;
+    flex-wrap: wrap;
+}
+
+.link-group h4 {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #ffffff33;
+    padding-bottom: 5px;
+}
+
+.link-group p {
+    margin: 8px 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.link-group p:hover { opacity: 1; }
+
+/* Kırmızı Alt Şerit */
+.red-footer-box {
+    background-color: #E8492A;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-}
-
-.register-box {
-    display: flex;
-    width: 75vw;
-    max-width: 1100px;
-    height: 80vh;
-    background-color: #ffffff;
-    border-radius: 25px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Sol kısım */
-.register-left {
-    flex: 1;
-    padding: 60px;
-    box-sizing: border-box;
-}
-
-/* Başlık yeşilimsi */
-.register-left h1 {
-    color: #124a44;
-    font-size: 2.3rem;
-    margin-bottom: 10px;
-}
-
-/* Alt açıklama gri */
-.register-left p {
-    color: #444;
-    margin-bottom: 40px;
-    font-weight: 500;
-}
-
-/* Etiketler gri */
-.register-left label {
-    display: block;
-    margin-bottom: 8px;
-    color: #444;
-    font-weight: 600;
-}
-
-/* Input kutuları turuncu */
-.register-left input {
-    width: 100%;
-    padding: 12px;
-    border: 1.5px solid #e24a2b;
-    background-color: #fff4ee; /* açık turuncu tonu */
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 15px;
-    outline: none;
-    transition: 0.3s;
-    color: #e24a2b;
-    font-weight: 500;
-}
-
-.register-left input::placeholder {
-    color: #e24a2b;
-    opacity: 0.8;
-}
-
-.register-left input:focus {
-    border-color: #d53e19;
-    box-shadow: 0 0 8px rgba(226, 74, 43, 0.3);
-}
-
-/* Üye Ol butonu yeşilimsi */
-.register-left button {
-    background-color: #124a44;
+    gap: 15px;
     color: white;
-    border: none;
-    padding: 14px;
-    width: 100%;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    font-weight: 600;
 }
 
-.register-left button:hover {
-    background-color: #0f3833;
+.user-profile-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* Sağ kısım */
-.register-right {
-    flex: 1;
-}
-
-.register-right img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.user-profile-area span {
+    color: #1f3173;
+    font-weight: 500;
 }

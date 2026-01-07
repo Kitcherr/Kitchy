@@ -5,33 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kitcher - Üye Ol</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/bb22271329.js" crossorigin="anonymous"></script>
+    <style>
+        /* Kayıt sayfasına özel ek stiller */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #F15439; /* Ana turuncu arka plan */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #FFF5E9; /* Tasarımdaki krem rengi */
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .form-section {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-section h1 {
+            color: #0b4d4a; /* Koyu yeşil başlık */
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .form-section p {
+            color: #1b6b66;
+            margin-bottom: 30px;
+        }
+
+        /* Flash Mesaj Stili */
+        .flash-messages {
+            margin-bottom: 20px;
+        }
+        .flash-msg {
+            padding: 12px;
+            border-radius: 10px;
+            background-color: #ffe6e6;
+            color: #F15439;
+            border: 1px solid #F15439;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #F15439;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #F15439;
+            border-radius: 15px;
+            background: transparent;
+            outline: none;
+        }
+
+        .btn-signup {
+            width: 100%;
+            padding: 15px;
+            background-color: #0b4d4a;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-signup:hover {
+            background-color: #083b39;
+            transform: scale(1.02);
+        }
+
+        .image-section {
+            flex: 1;
+            background-image: url("{{ url_for('static', filename='img/Kitcher_login.jpg') }}");
+            background-size: cover;
+            background-position: center;
+        }
+
+        @media (max-width: 768px) {
+            .card { flex-direction: column; }
+            .image-section { display: none; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="register-container">
-    <div class="register-box">
-        <div class="register-left">
+    <div class="card">
+        <div class="form-section">
             <h1>Ücretsiz Üye Ol</h1>
             <p>Sitemizin ayrıcalıklarından yararlanmak için üye olun.</p>
 
-            <form action="/register" method="POST">
-                <label for="username">Kullanıcı Adı</label>
-                <input type="text" id="username" name="username" placeholder="Kullanıcı Adı..." required>
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <div class="flash-messages">
+                  {% for message in messages %}
+                    <div class="flash-msg">{{ message }}</div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endwith %}
 
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="email adresiniz..." required>
+            <form action="{{ url_for('register') }}" method="POST">
+                <div class="input-group">
+                    <label>Kullanıcı Adı</label>
+                    <input type="text" name="username" placeholder="Kullanıcı Adı..." required>
+                </div>
 
-                <label for="password">Şifre</label>
-                <input type="password" id="password" name="password" placeholder="şifre oluşturun..." required>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="email adresiniz..." required>
+                </div>
 
-                <button type="submit">Üye Ol</button>
+                <div class="input-group">
+                    <label>Şifre</label>
+                    <input type="password" name="password" placeholder="şifre oluşturun..." required>
+                </div>
+
+                <button type="submit" class="btn-signup">Üye Ol</button>
             </form>
+            
+            <a href="{{ url_for('index') }}" style="margin-top: 15px; text-align: center; color: #0b4d4a; text-decoration: none; font-size: 0.8rem;">
+                ← Ana Sayfaya Dön
+            </a>
         </div>
 
-        <div class="register-right">
-            <img src="{{ url_for('static', filename='img/Kitcher-foto1.jpg') }}" alt="Yemek Görseli">
-        </div>
+        <div class="image-section"></div>
     </div>
-</div>
+
+</body>
+</html>
