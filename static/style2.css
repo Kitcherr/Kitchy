@@ -239,19 +239,62 @@ main {
 }
 
 /* suggestion of the day */
+
+
+
+.suggestion-day-button {
+    width: 180px;
+    height: 50px;
+    background-color: #FF9479;
+    border-radius: 25px;
+    border: none;
+    color: #FCF1E3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 16px;
+    cursor: pointer;
+    z-index: 4;
+    font-size: 1.1rem;
+    transition: background 0.3s, transform 0.15s;
+    align-self: flex-start;
+    margin-top: -1rem;
+}
+
+.suggestion-day-container {
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.suggestion-day-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding-left: 3rem;
+}
 .suggestion-img {
-    float: right;
-    margin-top: -15%;
-    width: 900px;
+    margin-top: -5%;
+    margin-right: -10%;
+    width: 1100px;
+    max-width: 100%;
 }
 
 .suggestion-day {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    box-sizing: border-box;
     top: 30%;
     width: auto;
-    height: 500px;
+    height: 320px;
     background-color: #1f3173;
     margin-top: 3rem; /* add vertical space between main and suggestion-day */
-
 }
 
 .svg-pattern {
@@ -351,10 +394,52 @@ main {
     height: 300px;
     background-color: #015258;
     border-radius: 15px;
-    background-image: url(/img/malzeme.jpeg);
+    background-image: url(/static/img/malzeme.jpeg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+/*feedback*/
+.feedback-section1 {
+    display: flex;
+    justify-content: center;
+    padding: 2% 0;
+    gap: 2%;
+}
+
+.feedback-section2 {
+    display: flex;
+    justify-content: center;
+    padding: 0% 0;
+    gap: 2%;
+}
+
+.feedback-boxes {
+    width: 300px;
+    height: 200px;
+    background-color: #FF9479;
+    border-radius: 15px;
+}
+
+.big-feedback-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 630px;
+    height: 200px;
+    background-color: #1f3173;
+    border-radius: 15px;
+    font-family: "poppins-light", "poppins-bold";
+    color: #FCF1E3;
+}
+
+.feedback-desc {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 20px 40px 10px 40px;
+    margin: 0;
+    color: #1f3173;
 }
 
 /* Footer */
