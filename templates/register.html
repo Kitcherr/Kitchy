@@ -5,33 +5,244 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kitcher - Üye Ol</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/bb22271329.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Kayıt sayfasına özel ek stiller */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #F15439; /* Ana turuncu/reddish-orange arka plan */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #FFF5E9; /* Tasarımdaki krem/beige rengi */
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .form-section {
+            flex: 1;
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-section h1 {
+            color: #0b4d4a; /* Koyu teal/yeşil başlık */
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .form-section p {
+            color: #0b4d4a;
+            font-size: 1rem;
+            margin-bottom: 35px;
+        }
+
+        /* Flash Mesaj Stili */
+        .flash-messages {
+            margin-bottom: 20px;
+        }
+        .flash-msg {
+            padding: 12px;
+            border-radius: 10px;
+            background-color: #ffe6e6;
+            color: #F15439;
+            border: 1px solid #F15439;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #0b4d4a;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #F15439;
+            border-radius: 12px;
+            background-color: #FFF5E9;
+            outline: none;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .input-group input::placeholder {
+            color: #999;
+        }
+
+        .input-group input:focus {
+            border-color: #d43f22;
+            background-color: #fff;
+        }
+
+        .btn-signup {
+            width: 100%;
+            padding: 16px;
+            background-color: #0b4d4a;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-signup:hover {
+            background-color: #083b39;
+            transform: scale(1.02);
+        }
+
+        .image-section {
+            flex: 1;
+            background-color: #F15439;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 15px;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .food-item {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .food-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Grid layout for food items */
+        .food-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+        .food-item:nth-child(2) { grid-column: 2; grid-row: 1; }
+        .food-item:nth-child(3) { grid-column: 1; grid-row: 2; }
+        .food-item:nth-child(4) { grid-column: 2; grid-row: 2; }
+        .food-item:nth-child(5) { grid-column: 1 / 3; grid-row: 3; }
+
+        .back-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .back-link a {
+            color: #0b4d4a;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 968px) {
+            .card {
+                flex-direction: column;
+            }
+            
+            .image-section {
+                display: none;
+            }
+            
+            .form-section {
+                padding: 40px 35px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="register-container">
-    <div class="register-box">
-        <div class="register-left">
+    <div class="card">
+        <div class="form-section">
             <h1>Ücretsiz Üye Ol</h1>
             <p>Sitemizin ayrıcalıklarından yararlanmak için üye olun.</p>
 
-            <form action="/register" method="POST">
-                <label for="username">Kullanıcı Adı</label>
-                <input type="text" id="username" name="username" placeholder="Kullanıcı Adı..." required>
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <div class="flash-messages">
+                  {% for message in messages %}
+                    <div class="flash-msg">{{ message }}</div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endwith %}
 
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="email adresiniz..." required>
+            <form action="{{ url_for('register') }}" method="POST">
+                <div class="input-group">
+                    <label>Kullanıcı Adı</label>
+                    <input type="text" name="username" placeholder="Kullanıcı Adı..." required>
+                </div>
 
-                <label for="password">Şifre</label>
-                <input type="password" id="password" name="password" placeholder="şifre oluşturun..." required>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="email adresiniz..." required>
+                </div>
 
-                <button type="submit">Üye Ol</button>
+                <div class="input-group">
+                    <label>Şifre</label>
+                    <input type="password" name="password" placeholder="şifre oluşturun..." required>
+                </div>
+
+                <button type="submit" class="btn-signup">Üye Ol</button>
             </form>
+            
+            <div class="back-link">
+                <a href="{{ url_for('index') }}">← Ana Sayfaya Dön</a>
+            </div>
         </div>
 
-        <div class="register-right">
-            <img src="{{ url_for('static', filename='img/Kitcher-foto1.jpg') }}" alt="Yemek Görseli">
+        <div class="image-section">
+            <div class="food-item">
+                <img src="{{ url_for('static', filename='img/steak.jpg') }}" alt="Food">
+            </div>
+            <div class="food-item">
+                <img src="{{ url_for('static', filename='img/makarna.jpg') }}" alt="Food">
+            </div>
+            <div class="food-item">
+                <img src="{{ url_for('static', filename='img/sushi.jpg') }}" alt="Food">
+            </div>
+            <div class="food-item">
+                <img src="{{ url_for('static', filename='img/tiramisu.jpg') }}" alt="Food">
+            </div>
+            <div class="food-item">
+                <img src="{{ url_for('static', filename='img/burrito.jpg') }}" alt="Food">
+            </div>
         </div>
     </div>
-</div>
+
+</body>
+</html>

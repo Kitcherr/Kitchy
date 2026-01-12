@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitcher - {{ list_type }}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/k.png') }}">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #FCF1E3;
+            min-height: 100vh;
+        }
+
+        .list-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .list-header {
+            background-color: #FFF5E9;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .list-header h1 {
+            color: #0b4d4a;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .list-header a {
+            color: #1b6b66;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .list-header a:hover {
+            color: #F15439;
+        }
+
+        .users-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .user-item {
+            background-color: #FFF5E9;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .user-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #E8492A, #F15439);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            color: #0b4d4a;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .user-name:hover {
+            color: #F15439;
+        }
+
+        .user-email {
+            color: #1b6b66;
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-view-profile {
+            padding: 8px 20px;
+            background-color: #0b4d4a;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-view-profile:hover {
+            background-color: #083b39;
+            transform: scale(1.05);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: #FFF5E9;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .empty-state h3 {
+            color: #0b4d4a;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .empty-state p {
+            color: #1b6b66;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .list-container {
+                padding: 0 15px;
+            }
+
+            .user-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .user-actions {
+                width: 100%;
+            }
+
+            .btn-view-profile {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo poppins-bold" style="color: #e74c3c;">kitcher</div>
+        <nav>
+            <a href="{{ url_for('index') }}" class="poppins-light">anasayfa</a>
+            <a href="{{ url_for('community') }}" class="poppins-light">topluluk</a>
+            <a href="#" class="poppins-light">tarifler</a>
+            <a href="#" class="poppins-light">hakkımızda</a>
+        </nav>
+        
+        <div class="login-btn-wrapper">
+            {% if session['username'] %}
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span class="poppins-light" style="color: #1f3173;">Selam, <strong>{{ session['username'] }}</strong></span>
+                    <button onclick="location.href='{{ url_for('profile') }}'" class="login-button poppins-light" style="background-color: #0b4d4a;">Profilim</button>
+                    <a href="{{ url_for('logout') }}" style="color: #e74c3c; text-decoration: none; font-size: 0.8rem;">çıkış yap</a>
+                </div>
+            {% else %}
+                <button onclick="location.href='/login'" class="login-button poppins-light">giriş yap ></button>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="list-container">
+        <div class="list-header">
+            <h1 class="poppins-bold">{{ list_type }}</h1>
+            <a href="{{ url_for('user_profile', user_id=profile_user.id) }}" class="poppins-light">
+                ← {{ profile_user.username }} profil sayfasına dön
+            </a>
+        </div>
+
+        {% if users %}
+            <div class="users-list">
+                {% for user in users %}
+                    <div class="user-item">
+                        <div class="user-info">
+                            <div class="user-avatar poppins-bold">{{ user.username[0].upper() }}</div>
+                            <div class="user-details">
+                                <a href="{{ url_for('user_profile', user_id=user.id) }}" class="user-name poppins-bold">{{ user.username }}</a>
+                                <span class="user-email poppins-light">{{ user.email }}</span>
+                            </div>
+                        </div>
+                        <div class="user-actions">
+                            <a href="{{ url_for('user_profile', user_id=user.id) }}" class="btn-view-profile poppins-light">Profili Gör</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <h3 class="poppins-bold">Henüz {{ list_type|lower }} yok</h3>
+                <p class="poppins-light">
+                    {% if list_type == 'Takipçiler' %}
+                        Bu kullanıcıyı henüz kimse takip etmiyor.
+                    {% else %}
+                        Bu kullanıcı henüz kimseyi takip etmiyor.
+                    {% endif %}
+                </p>
+            </div>
+        {% endif %}
+    </div>
+
+    <footer class="footer-dark">
+        <div class="footer-content">
+            <div class="footer-logo-section">
+                <h1 class="poppins-bold">kitcher</h1>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4 class="poppins-bold">Kategoriler</h4>
+                    <p class="poppins-light">Kahvaltı</p>
+                    <p class="poppins-light">Akşam Yemeği</p>
+                </div>
+                <div class="link-group">
+                    <h4 class="poppins-bold">Hakkımızda</h4>
+                    <p class="poppins-light">Yardım</p>
+                    <p class="poppins-light">Biz Kimiz?</p>
+                </div>
+                <div class="link-group">
+                    <h4 class="poppins-bold">Araçlar</h4>
+                    <p class="poppins-light">Malzeme Analiz</p>
+                    <p class="poppins-light">Geribildirim Oluştur</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

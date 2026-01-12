@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitcher - {{ profile_user.username }}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/k.png') }}">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #FCF1E3;
+            min-height: 100vh;
+        }
+
+        .profile-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .profile-header-section {
+            background-color: #FFF5E9;
+            border-radius: 30px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .profile-info {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .profile-avatar-large {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #E8492A, #F15439);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 4rem;
+            flex-shrink: 0;
+        }
+
+        .profile-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .profile-username {
+            color: #0b4d4a;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .stat-item:hover {
+            opacity: 0.8;
+        }
+
+        .stat-item a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .stat-number {
+            color: #0b4d4a;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            color: #1b6b66;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-profile-action {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-follow {
+            background-color: #0b4d4a;
+            color: white;
+        }
+
+        .btn-follow:hover {
+            background-color: #083b39;
+            transform: scale(1.05);
+        }
+
+        .btn-following {
+            background-color: #1b6b66;
+            color: white;
+        }
+
+        .btn-following:hover {
+            background-color: #0b4d4a;
+        }
+
+        .btn-edit-profile {
+            background-color: #F15439;
+            color: white;
+        }
+
+        .btn-edit-profile:hover {
+            background-color: #d43f22;
+            transform: scale(1.05);
+        }
+
+        .posts-section {
+            margin-top: 40px;
+        }
+
+        .section-title {
+            color: #0b4d4a;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(241, 84, 57, 0.3);
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .post-card {
+            background-color: #FFF5E9;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .post-header-small {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .post-date {
+            color: #1b6b66;
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+
+        .post-title {
+            color: #0b4d4a;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .post-content {
+            color: #1f3173;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(241, 84, 57, 0.2);
+        }
+
+        .upvote-count {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #1b6b66;
+            font-weight: 600;
+        }
+
+        .btn-upvote-small {
+            padding: 6px 15px;
+            border: none;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-upvote {
+            background-color: #F15439;
+            color: white;
+        }
+
+        .btn-upvote:hover {
+            background-color: #d43f22;
+        }
+
+        .btn-upvoted {
+            background-color: #E8492A;
+            color: white;
+        }
+
+        .btn-upvoted:hover {
+            background-color: #d43f22;
+        }
+
+        .no-posts {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: #FFF5E9;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .no-posts h3 {
+            color: #0b4d4a;
+            margin-bottom: 15px;
+        }
+
+        .no-posts p {
+            color: #1b6b66;
+        }
+
+        .flash-messages {
+            margin-bottom: 20px;
+        }
+
+        .flash-msg {
+            padding: 12px;
+            border-radius: 10px;
+            background-color: #ffe6e6;
+            color: #F15439;
+            border: 1px solid #F15439;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .flash-success {
+            background-color: #e6f7e6;
+            color: #0b4d4a;
+            border-color: #0b4d4a;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                padding: 0 15px;
+            }
+
+            .profile-info {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-avatar-large {
+                width: 120px;
+                height: 120px;
+                font-size: 3rem;
+            }
+
+            .profile-stats {
+                justify-content: center;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo poppins-bold" style="color: #e74c3c;">kitcher</div>
+        <nav>
+            <a href="{{ url_for('index') }}" class="poppins-light">anasayfa</a>
+            <a href="{{ url_for('community') }}" class="poppins-light">topluluk</a>
+            <a href="#" class="poppins-light">tarifler</a>
+            <a href="#" class="poppins-light">hakkımızda</a>
+        </nav>
+        
+        <div class="login-btn-wrapper">
+            {% if session['username'] %}
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span class="poppins-light" style="color: #1f3173;">Selam, <strong>{{ session['username'] }}</strong></span>
+                    <button onclick="location.href='{{ url_for('profile') }}'" class="login-button poppins-light" style="background-color: #0b4d4a;">Profilim</button>
+                    <a href="{{ url_for('logout') }}" style="color: #e74c3c; text-decoration: none; font-size: 0.8rem;">çıkış yap</a>
+                </div>
+            {% else %}
+                <button onclick="location.href='/login'" class="login-button poppins-light">giriş yap ></button>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="profile-container">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-messages">
+              {% for message in messages %}
+                <div class="flash-msg {% if 'başarıyla' in message.lower() or 'takip' in message.lower() %}flash-success{% endif %}">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <div class="profile-header-section">
+            <div class="profile-info">
+                <div class="profile-avatar-large poppins-bold">{{ profile_user.username[0].upper() }}</div>
+                
+                <div class="profile-details">
+                    <h1 class="profile-username poppins-bold">{{ profile_user.username }}</h1>
+                    
+                    <div class="profile-stats">
+                        <a href="{{ url_for('user_profile', user_id=profile_user.id) }}">
+                            <div class="stat-item">
+                                <span class="stat-number poppins-bold">{{ stats.posts_count }}</span>
+                                <span class="stat-label poppins-light">Gönderi</span>
+                            </div>
+                        </a>
+                        
+                        <a href="{{ url_for('user_followers', user_id=profile_user.id) }}">
+                            <div class="stat-item">
+                                <span class="stat-number poppins-bold">{{ stats.followers_count }}</span>
+                                <span class="stat-label poppins-light">Takipçi</span>
+                            </div>
+                        </a>
+                        
+                        <a href="{{ url_for('user_following', user_id=profile_user.id) }}">
+                            <div class="stat-item">
+                                <span class="stat-number poppins-bold">{{ stats.following_count }}</span>
+                                <span class="stat-label poppins-light">Takip Edilen</span>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="profile-actions">
+                        {% if is_own_profile %}
+                            <a href="{{ url_for('profile') }}" class="btn-profile-action poppins-light btn-edit-profile">Profili Düzenle</a>
+                        {% elif current_user %}
+                            <form action="{{ url_for('follow_user_from_profile', user_id=profile_user.id) }}" method="POST" style="display: inline;">
+                                <button type="submit" class="btn-profile-action poppins-light {% if is_following %}btn-following{% else %}btn-follow{% endif %}">
+                                    {% if is_following %}✓ Takip Ediliyor{% else %}+ Takip Et{% endif %}
+                                </button>
+                            </form>
+                        {% else %}
+                            <a href="{{ url_for('login') }}" class="btn-profile-action poppins-light btn-follow">Takip Etmek İçin Giriş Yap</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="posts-section">
+            <h2 class="section-title poppins-bold">Gönderiler</h2>
+            
+            {% if posts_data %}
+                <div class="posts-grid">
+                    {% for item in posts_data %}
+                        <div class="post-card">
+                            <div class="post-header-small">
+                                <span class="post-date poppins-light">{{ item.post.created_at.strftime('%d.%m.%Y %H:%M') }}</span>
+                            </div>
+                            
+                            <h3 class="post-title poppins-bold">{{ item.post.title }}</h3>
+                            <div class="post-content poppins-light">{{ item.post.content }}</div>
+                            
+                            <div class="post-footer">
+                                <div class="upvote-count poppins-light">
+                                    <span>👍</span>
+                                    <span>{{ item.upvote_count }} upvote</span>
+                                </div>
+                                {% if current_user %}
+                                    <form action="{{ url_for('upvote_post', post_id=item.post.id) }}" method="POST" style="display: inline;">
+                                        <button type="submit" class="btn-upvote-small poppins-light {% if item.is_upvoted %}btn-upvoted{% else %}btn-upvote{% endif %}">
+                                            {% if item.is_upvoted %}👍 Upvoted{% else %}👍 Upvote{% endif %}
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="no-posts">
+                    <h3 class="poppins-bold">Henüz gönderi yok</h3>
+                    <p class="poppins-light">Bu kullanıcı henüz hiç gönderi paylaşmamış.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer class="footer-dark">
+        <div class="footer-content">
+            <div class="footer-logo-section">
+                <h1 class="poppins-bold">kitcher</h1>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4 class="poppins-bold">Kategoriler</h4>
+                    <p class="poppins-light">Kahvaltı</p>
+                    <p class="poppins-light">Akşam Yemeği</p>
+                </div>
+                <div class="link-group">
+                    <h4 class="poppins-bold">Hakkımızda</h4>
+                    <p class="poppins-light">Yardım</p>
+                    <p class="poppins-light">Biz Kimiz?</p>
+                </div>
+                <div class="link-group">
+                    <h4 class="poppins-bold">Araçlar</h4>
+                    <p class="poppins-light">Malzeme Analiz</p>
+                    <p class="poppins-light">Geribildirim Oluştur</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

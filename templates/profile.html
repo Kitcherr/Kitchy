@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitcher - Profil</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/k.png') }}">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #FCF1E3;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: transparent;
+        }
+
+        .logo {
+            font-size: 2rem;
+            color: #E8492A;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #E8492A;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #E8492A;
+            transition: 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .profile-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: #FFF5E9;
+            border-radius: 40px;
+            padding: 50px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-header h1 {
+            color: #0b4d4a;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .profile-header p {
+            color: #1b6b66;
+            font-size: 1rem;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #E8492A, #F15439);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .flash-messages {
+            margin-bottom: 20px;
+        }
+
+        .flash-msg {
+            padding: 12px;
+            border-radius: 10px;
+            background-color: #ffe6e6;
+            color: #F15439;
+            border: 1px solid #F15439;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .profile-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            color: #F15439;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #F15439;
+            border-radius: 15px;
+            background: transparent;
+            outline: none;
+            font-size: 1rem;
+            color: #1f3173;
+        }
+
+        .input-group input:focus {
+            border-color: #0b4d4a;
+            background-color: rgba(11, 77, 74, 0.05);
+        }
+
+        .input-group input:disabled {
+            background-color: #f0f0f0;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .btn-primary {
+            flex: 1;
+            padding: 15px;
+            background-color: #0b4d4a;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #083b39;
+            transform: scale(1.02);
+        }
+
+        .btn-secondary {
+            padding: 15px 30px;
+            background-color: #F15439;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #d43f22;
+            transform: scale(1.02);
+        }
+
+        .user-info-section {
+            background-color: rgba(241, 84, 57, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .user-info-section h3 {
+            color: #0b4d4a;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(241, 84, 57, 0.2);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #1b6b66;
+            font-weight: bold;
+        }
+
+        .info-value {
+            color: #1f3173;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #0b4d4a;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .back-link a:hover {
+            color: #F15439;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+
+            .profile-header h1 {
+                font-size: 2rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo poppins-bold">kitcher</div>
+        <nav>
+            <a href="{{ url_for('index') }}" class="poppins-light">anasayfa</a>
+            <a href="{{ url_for('community') }}" class="poppins-light">topluluk</a>
+            <a href="#" class="poppins-light">tarifler</a>
+            <a href="#" class="poppins-light">hakkımızda</a>
+        </nav>
+        <div class="login-btn-wrapper">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span class="poppins-light" style="color: #1f3173;">Selam, <strong>{{ session['username'] }}</strong></span>
+                <a href="{{ url_for('logout') }}" class="btn-secondary poppins-light" style="background-color: #e74c3c;">çıkış yap</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar">{{ user.username[0].upper() }}</div>
+            <h1 class="poppins-bold">Profilim</h1>
+            <p class="poppins-light">Bilgilerinizi görüntüleyin ve güncelleyin</p>
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-messages">
+              {% for message in messages %}
+                <div class="flash-msg">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <div class="user-info-section">
+            <h3 class="poppins-bold">Kullanıcı Bilgileri</h3>
+            <div class="info-row">
+                <span class="info-label poppins-light">Kullanıcı ID:</span>
+                <span class="info-value poppins-light">#{{ user.id }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label poppins-light">Üye Olma Tarihi:</span>
+                <span class="info-value poppins-light">Aktif Hesap</span>
+            </div>
+        </div>
+
+        {% if stats %}
+        <div class="user-info-section" style="margin-top: 20px;">
+            <h3 class="poppins-bold">İstatistikler</h3>
+            <div style="display: flex; gap: 30px; flex-wrap: wrap; margin-top: 15px;">
+                <a href="{{ url_for('user_profile', user_id=user.id) }}" style="text-decoration: none; color: inherit;">
+                    <div class="stat-item" style="cursor: pointer;">
+                        <span class="info-label poppins-light" style="color: #1b6b66;">Gönderi</span>
+                        <span class="stat-number" style="color: #0b4d4a; font-size: 1.8rem; font-weight: 700;">{{ stats.posts_count }}</span>
+                    </div>
+                </a>
+                <a href="{{ url_for('user_followers', user_id=user.id) }}" style="text-decoration: none; color: inherit;">
+                    <div class="stat-item" style="cursor: pointer;">
+                        <span class="info-label poppins-light" style="color: #1b6b66;">Takipçi</span>
+                        <span class="stat-number" style="color: #0b4d4a; font-size: 1.8rem; font-weight: 700;">{{ stats.followers_count }}</span>
+                    </div>
+                </a>
+                <a href="{{ url_for('user_following', user_id=user.id) }}" style="text-decoration: none; color: inherit;">
+                    <div class="stat-item" style="cursor: pointer;">
+                        <span class="info-label poppins-light" style="color: #1b6b66;">Takip Edilen</span>
+                        <span class="stat-number" style="color: #0b4d4a; font-size: 1.8rem; font-weight: 700;">{{ stats.following_count }}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+
+        <form action="{{ url_for('profile') }}" method="POST" class="profile-form">
+            <div class="input-group">
+                <label for="username" class="poppins-light">Kullanıcı Adı</label>
+                <input type="text" id="username" name="username" value="{{ user.username }}" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email" class="poppins-light">E-posta Adresi</label>
+                <input type="email" id="email" name="email" value="{{ user.email }}" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password" class="poppins-light">Yeni Şifre (Değiştirmek istemiyorsanız boş bırakın)</label>
+                <input type="password" id="password" name="password" placeholder="Yeni şifre girin...">
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="btn-primary poppins-light">Bilgileri Güncelle</button>
+                <a href="{{ url_for('index') }}" class="btn-secondary poppins-light" style="text-align: center; padding: 15px 30px;">Ana Sayfaya Dön</a>
+            </div>
+        </form>
+
+        {% if user_posts %}
+        <div style="margin-top: 40px;">
+            <h2 class="poppins-bold" style="color: #0b4d4a; font-size: 1.8rem; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 2px solid rgba(241, 84, 57, 0.3);">Gönderilerim</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+                {% for post in user_posts[:6] %}
+                    <div style="background-color: #FFF5E9; border-radius: 15px; padding: 20px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                        <div style="color: #1b6b66; font-size: 0.85rem; margin-bottom: 10px; font-weight: 300;">{{ post.created_at.strftime('%d.%m.%Y %H:%M') }}</div>
+                        <h3 style="color: #0b4d4a; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px;">{{ post.title }}</h3>
+                        <p style="color: #1f3173; font-size: 0.9rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">{{ post.content }}</p>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(241, 84, 57, 0.2); color: #1b6b66; font-weight: 600;">
+                            👍 {{ post.get_upvote_count() }} upvote
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if user_posts|length > 6 %}
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="{{ url_for('user_profile', user_id=user.id) }}" style="color: #0b4d4a; text-decoration: none; font-weight: 600;">Tüm gönderilerimi gör →</a>
+                </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <div class="back-link">
+            <a href="{{ url_for('logout') }}" class="poppins-light">Hesaptan Çıkış Yap</a>
+        </div>
+    </div>
+
+</body>
+</html>
