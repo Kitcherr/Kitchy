@@ -190,7 +190,7 @@
         <div class="logo poppins-bold" style="color: #e74c3c;">kitcher</div>
         <nav>
             <a href="{{ url_for('index') }}" class="poppins-light">anasayfa</a>
-            <a href="{{ url_for('community') }}" class="poppins-light">topluluk</a>
+            <a href="{{ url_for('index') }}" class="poppins-light">topluluk</a>
             <a href="#" class="poppins-light">tarifler</a>
             <a href="#" class="poppins-light">hakkımızda</a>
         </nav>
@@ -200,10 +200,10 @@
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span class="poppins-light" style="color: #1f3173;">Selam, <strong>{{ session['username'] }}</strong></span>
                     <button onclick="location.href='/profile'" class="login-button poppins-light" style="background-color: #0b4d4a;">Profilim</button>
-                    <a href="{{ url_for('logout') }}" style="color: #e74c3c; text-decoration: none; font-size: 0.8rem;">çıkış yap</a>
+                    <a href="{{ url_for('index') }}" style="color: #e74c3c; text-decoration: none; font-size: 0.8rem;">çıkış yap</a>
                 </div>
             {% else %}
-                <button onclick="location.href='/login'" class="login-button poppins-light">giriş yap ></button>
+                <button onclick="location.href='/index'" class="login-button poppins-light">giriş yap ></button>
             {% endif %}
             </div>
     </header>
@@ -220,7 +220,7 @@
             </div>
             
             {% if not session['username'] %}
-            <button onclick="location.href='/register'" class="signup-btn-main poppins-light">
+            <button onclick="location.href='/index'" class="signup-btn-main poppins-light">
                 üye ol <span class="arrow-circle">→</span>
             </button>
             {% endif %}
