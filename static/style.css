@@ -1,7 +1,5 @@
-/* Genel Ayarlar */
 body {
     background-color: #FCF1E3;
-<<<<<<< HEAD
     padding: 0;
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -23,26 +21,10 @@ body {
 }
 
 /* Header */
-=======
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-    color: #1f3173;
-    overflow-x: hidden;
-}
-
-/* Typography */
-.poppins-light { font-weight: 300; }
-.poppins-bold { font-weight: 700; }
-.handwrite { font-family: "Shadows Into Light", cursive; }
-
-/* --- HEADER --- */
->>>>>>> 8059cff701dbfbd0ee168fabd62c6f7f13a8308b
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-<<<<<<< HEAD
     padding: 2.5% 5%;
 }
 
@@ -50,19 +32,10 @@ header h1 {
     color: #E8492A;
     margin: 0;
     cursor: default;
-=======
-    padding: 20px 5%;
-}
-
-.logo {
-    font-size: 2rem;
-    color: #E8492A;
->>>>>>> 8059cff701dbfbd0ee168fabd62c6f7f13a8308b
 }
 
 nav {
     display: flex;
-<<<<<<< HEAD
     gap: 35px;
 }
 
@@ -73,22 +46,11 @@ nav a {
     font-size: 120%;
     transition: all 0.3s ease;
     cursor: default;
-=======
-    gap: 30px;
-}
-
-nav a {
-    text-decoration: none;
-    color: #E8492A;
-    font-size: 1.1rem;
-    position: relative;
->>>>>>> 8059cff701dbfbd0ee168fabd62c6f7f13a8308b
 }
 
 nav a::after {
     content: "";
     position: absolute;
-<<<<<<< HEAD
     left: 0;
     bottom: -5px;
     width: 0;
@@ -277,8 +239,6 @@ main {
 }
 
 /* suggestion of the day */
-
-
 
 .suggestion-day-button {
     width: 180px;
@@ -551,151 +511,14 @@ footer {
     color: #FCF1E3;
     font-size: 100%;
     margin: 0;
-=======
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: #E8492A;
-    transition: 0.3s;
 }
 
-nav a:hover::after { width: 100%; }
+/* malzeme analiz */
 
-/* Giriş Butonu (Animasyonlu) */
-.login-button {
-    padding: 10px 25px;
-    border-radius: 25px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    background: linear-gradient(45deg, #1f3173, #029faa);
-    transition: transform 0.3s;
-}
-
-.login-button:hover { transform: scale(1.05); }
-
-/* --- HERO SECTION --- */
-.hero-section {
+.analysis-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 100px 20px;
-    min-height: 40vh;
-}
-
-.main-text {
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    line-height: 1.1;
-    margin-bottom: 40px;
-}
-
-/* Arama ve Üye Ol (Yan yana dizilim) */
-.cta-container {
-    display: flex;
+    padding: 5% 0;
     gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.search-bar {
-    background-color: #E8492A;
-    border-radius: 35px;
-    display: flex;
-    align-items: center;
-    padding: 5px 20px;
-    width: 350px;
-    height: 60px;
-}
-
-.search-bar input {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: white;
-    width: 100%;
-    font-size: 1rem;
-}
-
-.search-bar input::placeholder { color: #fcf1e3cc; }
-
-.signup-btn-main {
-    background-color: #E8492A;
-    color: white;
-    border: none;
-    padding: 0 35px;
-    border-radius: 35px;
-    height: 60px;
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.signup-btn-main:hover { background-color: #d43f22; }
-
-/* --- FOOTER (Görseldeki koyu mavi alan) --- */
-.footer-dark {
-    background-color: #1f3173;
-    color: #FCF1E3;
-    padding: 80px 10% 40px 10%;
-    margin-top: 100px;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 50px;
-}
-
-.footer-logo-section h1 { font-size: 3rem; margin: 0; }
-
-.footer-links {
-    display: flex;
-    gap: 80px;
-    flex-wrap: wrap;
-}
-
-.link-group h4 {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-    border-bottom: 1px solid #ffffff33;
-    padding-bottom: 5px;
-}
-
-.link-group p {
-    margin: 8px 0;
-    font-size: 0.9rem;
-    opacity: 0.8;
-    cursor: pointer;
-}
-
-.link-group p:hover { opacity: 1; }
-
-/* Kırmızı Alt Şerit */
-.red-footer-box {
-    background-color: #E8492A;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    color: white;
-}
-
-.user-profile-area {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.user-profile-area span {
-    color: #1f3173;
-    font-weight: 500;
->>>>>>> 8059cff701dbfbd0ee168fabd62c6f7f13a8308b
 }

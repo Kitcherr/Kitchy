@@ -38,7 +38,7 @@
             <a class="poppins-light">hakkımızda</a>
         </nav>
         <div class="login_button ex1">
-            <h4 class="poppins-light">giriş yap ></h4>
+            <a href="{{ url_for('login') }}" class="poppins-light" style="color: #FCF1E3; text-decoration: none;">giriş yap ></a>
         </div>
     </header>
 
@@ -60,7 +60,7 @@
         </div>
 
         <button class="signup-button poppins-light">
-            <h2 class="poppins-light">üye ol</h2>
+            <a href="{{ url_for('register') }}" class="poppins-light" style="color: #FCF1E3; text-decoration: none; font-size: 150%;">üye ol</a>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 74 74" height="34" width="34">
                 <circle stroke-width="3" stroke="white" r="35.5" cy="37" cx="37"></circle>
                 <path fill="white"
@@ -74,7 +74,9 @@
         <div class="suggestion-day">
             <div class="suggestion-day-text">
                 <h1 style="color: #FCF1E3; font-size: 350%; line-height: 1.0;">Günün önerisi: <br> <span class="handwrite" style="font-size: 200%;">brownie</span></h1>
-                <button class="suggestion-day-button poppins-light">tarif ></button>
+                <button class="suggestion-day-button poppins-light">
+                    <a href="{{ url_for('suggestion_day') }}" style="color: #FCF1E3; text-decoration: none;">tarif ></a>
+                </button>
             </div>
             <img src="/static/img/brownies.png" class="suggestion-img">
         </div>
@@ -97,7 +99,7 @@
                 <h1 class="poppins-bold box-title">Malzeme Analiz</h1>
                 <h2 class="poppins-light box-desc">Elindeki malzemeleri gir, yapabileceklerini <br> gör ve voila!</h2>
                 <div class="login_button box-button">
-                    <h4 class="poppins-light">hemen dene ></h4>
+                    <a href="{{ url_for('analysis') }}" class="poppins-light" style="text-decoration: none; color: #FCF1E3;">hemen dene ></a>
                 </div>
             </div>
             <div class="img-box"></div>
@@ -129,7 +131,7 @@
         <div class="big-feedback-box">
             <h2 class="poppins-light big-feedback-desc">Deneyimlerini bizimle paylaş, <br>kitcher'ı birlikte geliştirelim!</h2>
             <div class="login_button big-feedback-button" style="background-color: #FF9479;">
-                <h4 class="poppins-light">geri bildirim ></h4>
+                <a href="{{ url_for('feedback') }}" class="poppins-light" style="color: #FCF1E3; text-decoration: none;">geri bildirim ></a>
             </div>
         </div>
         
@@ -176,83 +178,7 @@
                 <h2 class="poppins-light">Geribildirim Oluştur</h2>
                 <h2 class="poppins-light">Tarif Oluştur</h2>
 
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/k.png') }}">
-</head>
-<body>
-
-    <header>
-        <div class="logo poppins-bold" style="color: #e74c3c;">kitcher</div>
-        <nav>
-            <a href="{{ url_for('index') }}" class="poppins-light">anasayfa</a>
-            <a href="{{ url_for('community') }}" class="poppins-light">topluluk</a>
-            <a href="#" class="poppins-light">tarifler</a>
-            <a href="#" class="poppins-light">hakkımızda</a>
-        </nav>
-        
-        <div class="login-btn-wrapper">
-            {% if session['username'] %}
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <span class="poppins-light" style="color: #1f3173;">Selam, <strong>{{ session['username'] }}</strong></span>
-                    <button onclick="location.href='/profile'" class="login-button poppins-light" style="background-color: #0b4d4a;">Profilim</button>
-                    <a href="{{ url_for('logout') }}" style="color: #e74c3c; text-decoration: none; font-size: 0.8rem;">çıkış yap</a>
-                </div>
-            {% else %}
-                <button onclick="location.href='/login'" class="login-button poppins-light">giriş yap ></button>
-            {% endif %}
-            </div>
-    </header>
-
-    <main class="hero-section">
-        <h1 class="main-text poppins-bold">
-            Aradığın en <span class="handwrite">"sıradışı"</span> <br> tarifler burada!
-        </h1>
-
-        <div class="cta-container">
-            <div class="search-bar">
-                <input type="text" placeholder="Tarif Ara..." class="poppins-light">
-                <span class="search-icon">🔍</span>
-            </div>
-            
-            {% if not session['username'] %}
-            <button onclick="location.href='/register'" class="signup-btn-main poppins-light">
-                üye ol <span class="arrow-circle">→</span>
-            </button>
-            {% endif %}
-        </div>
-    </main>
-
-    <footer class="footer-dark">
-        <div class="footer-content">
-            <div class="footer-logo-section">
-                <h1 class="poppins-bold">kitcher</h1>
-            </div>
-            <div class="footer-links">
-                <div class="link-group">
-                    <h4 class="poppins-bold">Kategoriler</h4>
-                    <p class="poppins-light">Kahvaltı</p>
-                    <p class="poppins-light">Akşam Yemeği</p>
-                </div>
-                <div class="link-group">
-                    <h4 class="poppins-bold">Hakkımızda</h4>
-                    <p class="poppins-light">Yardım</p>
-                    <p class="poppins-light">Biz Kimiz?</p>
-                </div>
-                <div class="link-group">
-                    <h4 class="poppins-bold">Araçlar</h4>
-                    <p class="poppins-light">Malzeme Analiz</p>
-                    <p class="poppins-light">Geribildirim Oluştur</p>
-                </div>
-
-            </div>
-        </div>
     </footer>
-
 
     <div class="red-footer-box">
         <h1 class="poppins-light footer-year">2025</h1>

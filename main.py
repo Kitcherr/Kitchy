@@ -82,6 +82,42 @@ class Follow(db.Model):
 def index():
     return render_template('index.html')
 
+#Malzeme analiz -----------------------------------------------------------------------------------------------------------------
+@app.route('/analysis', methods=['GET', 'POST'])
+def analysis():
+    results = []
+
+    recipes = [
+        {
+            "name": "pankek",
+            "ingredients": ["un", "süt", "yumurta", "şeker", "kabartma tozu"],
+        },
+        {
+            "name": "omlet",
+            "ingredients": ["yumurta", "süt", "tuz", "karabiber", "peynir"],
+        },
+        {   
+            "name": "spagetti",
+            "ingredients": ["spagetti makarna", "domates sosu", "zeytinyağı", "sarımsak", "fesleğen"],
+        }
+    ]
+
+
+    if request.method == "POST":
+        user_input = request.form.get("ingredients")
+        user_ingredients = [i.strip().lower() for i in user_input.split(",")]
+
+        for recipe in recipes:
+            # en az 1 ortak malzeme var mı?
+            for ing in user_ingredients:
+                if ing in recipe["ingredients"]:
+                    results.append(recipe)
+                    break  # bu tarif tamam, diğer malzemelere bakma
+
+    return render_template('analysis.html', results=results)
+
+# -------------------------------------------------------------------------------------------------------------------------------
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -106,6 +142,13 @@ def register():
         return redirect(url_for('index'))
 
     return render_template('register.html')
+@app.route('/suggestion-day')
+def suggestion_day():
+    return render_template('suggestion-day.html')
+
+@app.route('/feedback')
+def feedback():
+    return render_template('feedback.html')
 
 @app.route('/logout')
 def logout():
