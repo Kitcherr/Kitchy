@@ -1,33 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malzeme Analiz - Kitcher</title>
-    
+
     <link rel="icon" type="image/png" href="/static/img/k.png">
     <link rel="stylesheet" href="/static/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
+
 <body>
-    <form method="POST">
-    <input type="text" name="ingredients"
-           placeholder="Malzemeleri virgülle ayırarak girin"
-           required>
-    <button type="submit">Göster</button>
-</form>
+    <div style="padding: 20px;">
+        <input type="text" id="search-input" placeholder="Malzemeleri virgülle ayırarak girin (örn: un, süt)"
+            style="width: 100%; padding: 10px;">
+    </div>
 
-{% if results %}
-    <h2>Bulunan Tarifler</h2>
-    {% for r in results %}
-        <div>
-            <h3>{{ r.name }}</h3>
-            <p>Malzemeler: {{ r.ingredients | join(", ") }}</p>
-        </div>
-        <hr>
-    {% endfor %}
-{% endif %}
+    <div id="results-container" style="padding: 20px;">
+        <!-- Results will appear here -->
+    </div>
 
-    
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const resultsContainer = document.getElementById('results-container');
+
+        searchInput.addEventListener('input', function () {
+            const query = this.value;
+
+            if (query.trim().length === 0) {
+                resultsContainer.innerHTML = '';
+                return;
+            }
+
+            fetch(`/api/search?q=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                    resultsContainer.innerHTML = ''; // Clear previous results
+
+                    if (data.length > 0) {
+                        data.forEach(recipe => {
+                            const div = document.createElement('div');
+                            // Simple styling just to separate items
+                            div.style.marginBottom = "20px";
+                            div.style.borderBottom = "1px solid #ccc";
+                            div.style.paddingBottom = "10px";
+
+                            div.innerHTML = `
+                                <h3>${recipe.name}</h3>
+                                <p>Malzemeler: ${recipe.ingredients.join(", ")}</p>
+                            `;
+                            resultsContainer.appendChild(div);
+                        });
+                    } else {
+                        resultsContainer.innerHTML = '<p>Sonuç bulunamadı.</p>';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
+
 </html>

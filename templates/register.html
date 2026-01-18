@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +17,8 @@
         }
 
         body {
-            background-color: #F15439; /* Ana turuncu/reddish-orange arka plan */
+            background-color: #F15439;
+            /* Ana turuncu/reddish-orange arka plan */
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -25,13 +27,14 @@
         }
 
         .card {
-            background-color: #FFF5E9; /* Tasarımdaki krem/beige rengi */
+            background-color: #FFF5E9;
+            /* Tasarımdaki krem/beige rengi */
             width: 100%;
             max-width: 1200px;
             display: flex;
             border-radius: 40px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
 
         .form-section {
@@ -43,7 +46,8 @@
         }
 
         .form-section h1 {
-            color: #0b4d4a; /* Koyu teal/yeşil başlık */
+            color: #0b4d4a;
+            /* Koyu teal/yeşil başlık */
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 10px;
@@ -59,6 +63,7 @@
         .flash-messages {
             margin-bottom: 20px;
         }
+
         .flash-msg {
             padding: 12px;
             border-radius: 10px;
@@ -137,7 +142,7 @@
             height: 100%;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
         .food-item img {
@@ -147,11 +152,30 @@
         }
 
         /* Grid layout for food items */
-        .food-item:nth-child(1) { grid-column: 1; grid-row: 1; }
-        .food-item:nth-child(2) { grid-column: 2; grid-row: 1; }
-        .food-item:nth-child(3) { grid-column: 1; grid-row: 2; }
-        .food-item:nth-child(4) { grid-column: 2; grid-row: 2; }
-        .food-item:nth-child(5) { grid-column: 1 / 3; grid-row: 3; }
+        .food-item:nth-child(1) {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .food-item:nth-child(2) {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .food-item:nth-child(3) {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .food-item:nth-child(4) {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .food-item:nth-child(5) {
+            grid-column: 1 / 3;
+            grid-row: 3;
+        }
 
         .back-link {
             margin-top: 20px;
@@ -173,17 +197,18 @@
             .card {
                 flex-direction: column;
             }
-            
+
             .image-section {
                 display: none;
             }
-            
+
             .form-section {
                 padding: 40px 35px;
             }
         }
     </style>
 </head>
+
 <body>
 
     <div class="card">
@@ -192,13 +217,13 @@
             <p>Sitemizin ayrıcalıklarından yararlanmak için üye olun.</p>
 
             {% with messages = get_flashed_messages() %}
-              {% if messages %}
-                <div class="flash-messages">
-                  {% for message in messages %}
-                    <div class="flash-msg">{{ message }}</div>
-                  {% endfor %}
-                </div>
-              {% endif %}
+            {% if messages %}
+            <div class="flash-messages">
+                {% for message in messages %}
+                <div class="flash-msg">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
             {% endwith %}
 
             <form action="{{ url_for('index') }}" method="POST">
@@ -219,7 +244,7 @@
 
                 <button type="submit" class="btn-signup">Üye Ol</button>
             </form>
-            
+
             <div class="back-link">
                 <a href="{{ url_for('index') }}">← Ana Sayfaya Dön</a>
             </div>
@@ -245,4 +270,5 @@
     </div>
 
 </body>
+
 </html>
